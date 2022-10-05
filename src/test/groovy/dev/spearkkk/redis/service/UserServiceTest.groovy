@@ -25,7 +25,7 @@ class UserServiceTest extends Specification {
     static GenericContainer redis = new GenericContainer<>(DockerImageName.parse("redis:latest")).withExposedPorts(6379)
 
     @DynamicPropertySource
-    static void mongoProps(DynamicPropertyRegistry registry) {
+    static void props(DynamicPropertyRegistry registry) {
         redis.start()
         registry.add("spring.redis.host", () -> redis.getHost())
         registry.add("spring.redis.port", () -> redis.getMappedPort(6379).toString())
